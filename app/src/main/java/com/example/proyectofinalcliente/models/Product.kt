@@ -6,5 +6,6 @@ data class Product(
     val description: String,
     val price: String,
     val restaurant_id: Int,
-    val image: String
+    val image: String,
+    var quantity: Int = 0
 )

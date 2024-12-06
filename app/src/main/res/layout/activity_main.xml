@@ -6,21 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF0000"
-    android:backgroundTint="#FF0000"
-    tools:context=".ui.activities.MainActivity" >
+    android:backgroundTint="#f90050"
+    tools:context=".ui.activities.MainActivity">
 
     <EditText
         android:id="@+id/txtedtCorreo"
         android:layout_width="322dp"
         android:layout_height="61dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="128dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Correo Electronico"
         android:inputType="text"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNombreApp"
         tools:ignore="TouchTargetSizeCheck" />
@@ -29,16 +29,49 @@
         android:id="@+id/lblNombreApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/cherry_cream_soda"
         android:text="PedidosYema"
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtedtpassword"
+        android:layout_width="323dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="56dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtedtCorreo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="161dp"
+        android:layout_marginBottom="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Iniciar Sesion"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/lblNoAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtedtpassword" />
 
     <Button
         android:id="@+id/btnRegistrarse"
@@ -53,36 +86,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion" />
-
-    <EditText
-        android:id="@+id/txtedtpassword"
-        android:layout_width="323dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="24dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="text"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtedtCorreo" />
-
-    <Button
-        android:id="@+id/btnIniciarSesion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="304dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="Iniciar Sesion"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtedtpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion"
+        app:layout_constraintVertical_bias="0.229" />
 
     <TextView
         android:id="@+id/lblNoAccount"
@@ -94,6 +99,19 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnRegistrarse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="97dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="52dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lblNombreApp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pedidosyalogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

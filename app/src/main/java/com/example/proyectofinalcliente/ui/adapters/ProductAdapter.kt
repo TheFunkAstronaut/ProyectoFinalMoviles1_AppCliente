@@ -15,14 +15,29 @@ import com.example.proyectofinalcliente.models.Product
 
 class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
 
+    private val selectedProducts = mutableListOf<Product>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_productos, parent, false)
         return ProductViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val product = getItem(position)
+        holder.bind(product) { updatedProduct, count ->
+            updatedProduct.quantity = count
+            if (count > 0) {
+                if (!selectedProducts.contains(updatedProduct)) {
+                    selectedProducts.add(updatedProduct)
+                }
+            } else {
+                selectedProducts.remove(updatedProduct)
+            }
+        }
     }
+
+
+    fun getSelectedProducts(): List<Product> = selectedProducts
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val nameTextView: TextView = view.findViewById(R.id.lblProductName)
@@ -35,20 +50,24 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DI
 
         private var count = 0
 
-        fun bind(product: Product) {
+        fun bind(product: Product, onCountChange: (Product, Int) -> Unit) {
             nameTextView.text = product.name
             descriptionTextView.text = product.description
             priceTextView.text = "Bs. ${product.price}"
             Glide.with(imageView.context).load(product.image).into(imageView)
 
+            countTextView.text = count.toString()
+
             minusButton.setOnClickListener {
                 if (count > 0) count--
                 countTextView.text = count.toString()
+                onCountChange(product, count)
             }
 
             plusButton.setOnClickListener {
                 count++
                 countTextView.text = count.toString()
+                onCountChange(product, count)
             }
         }
     }
@@ -65,4 +84,5 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DI
         }
     }
 }
+
 

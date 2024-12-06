@@ -1,6 +1,9 @@
 package com.example.proyectofinalcliente.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,6 +27,7 @@ class RestListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestListBinding
     private val restaurantAdapter by lazy { RestaurantAdapter(mutableListOf()) { onRestaurantClick(it) } }
+    private var allRestaurants = mutableListOf<Restaurant>() // Lista completa de restaurantes
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class RestListActivity : AppCompatActivity() {
 
         setupRecyclerView()
         fetchRestaurants()
+        setupListeners()
     }
 
     private fun setupRecyclerView() {
@@ -50,6 +55,8 @@ class RestListActivity : AppCompatActivity() {
 
         RestaurantRepository.getRestaurants(token) { restaurants, error ->
             if (restaurants != null) {
+                allRestaurants.clear()
+                allRestaurants.addAll(restaurants)
                 restaurantAdapter.updateData(restaurants)
             } else {
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
@@ -57,8 +64,37 @@ class RestListActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupListeners() {
+        binding.txtedtBuscar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString().trim()
+                filterRestaurants(query)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        binding.btnVerPedidos.setOnClickListener {
+            val intent = Intent(this, OrdersListActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun filterRestaurants(query: String) {
+        if (query.isEmpty()) {
+            restaurantAdapter.updateData(allRestaurants) // Mostrar todos si no hay filtro
+        } else {
+            val filteredList = allRestaurants.filter { it.name.contains(query, ignoreCase = true) }
+            restaurantAdapter.updateData(filteredList)
+        }
+    }
 
     private fun onRestaurantClick(restaurant: Restaurant) {
         Toast.makeText(this, "Seleccionaste: ${restaurant.name}", Toast.LENGTH_SHORT).show()
+        // Implementa la lógica para abrir los detalles del restaurante aquí
     }
 }
+
