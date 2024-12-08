@@ -41,9 +41,11 @@ class OrdersAdapter(private val orders: List<OrderResponse>, private val onItemC
 
             // Determinamos el estado del envío
             txtStatus.text = when (order.status) {
-                "1" -> "Enviado"
-                "2" -> "Entregado"
-                else -> "Pendiente"
+                "0" -> "Solicitado"
+                "1" -> "Aceptado por chofer"
+                "2" -> "En camino"
+                "3" -> "Finalizado"
+                else -> "Desconocido"
             }
 
             // Cargamos la imagen del producto usando Glide o cualquier otra librería de imágenes

@@ -41,6 +41,9 @@ android {
 
 
 dependencies {
+    //GoogleMaps
+    implementation (libs.play.services.location)
+
     //Glide
     implementation (libs.glide)
     // Lifecycle libraries

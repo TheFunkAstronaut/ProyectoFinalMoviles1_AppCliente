@@ -6,5 +6,6 @@ data class OrderRequest(
     val address: String,
     val latitude: String,
     val longitude: String,
-    val details: List<OrderDetail>
+    val details: List<OrderDetail>,
+    val status: Int = 0 // Estado inicial como "solicitado"
 )

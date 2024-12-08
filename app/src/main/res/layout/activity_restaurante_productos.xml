@@ -9,6 +9,21 @@
     android:backgroundTint="#f90050"
     tools:context=".ui.activities.RestauranteProductosActivity">
 
+    <TextView
+        android:id="@+id/tvTotalPedido"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:text="Valor total del pedido: Bs. 0.00"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        tools:ignore="MissingConstraints" />
+
+
     <Button
         android:id="@+id/btnHacerPedido"
         android:layout_width="0dp"
@@ -20,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalPedido" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
@@ -29,7 +44,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         android:background="#FFFFFF"
         android:backgroundTint="#FBFBFB"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -13,7 +13,9 @@ import com.bumptech.glide.Glide
 import com.example.proyectofinalcliente.R
 import com.example.proyectofinalcliente.models.Product
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
+class ProductAdapter(
+    private val onTotalChange: (Double) -> Unit
+)  : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
 
     private val selectedProducts = mutableListOf<Product>()
 
@@ -33,9 +35,13 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(DI
             } else {
                 selectedProducts.remove(updatedProduct)
             }
+            notifyTotalChange()
         }
     }
-
+    private fun notifyTotalChange() {
+        val total = selectedProducts.sumOf { it.price.toDouble() * it.quantity }
+        onTotalChange(total)
+    }
 
     fun getSelectedProducts(): List<Product> = selectedProducts
 

@@ -31,13 +31,21 @@ class RestauranteProductosActivity : AppCompatActivity() {
     private val restaurantRepository = RestaurantRepository
     private lateinit var orderViewModel: OrderViewModel
     private var currentRestaurant: Restaurant? = null // Variable para almacenar el restaurante actual
+    private lateinit var tvTotalPedido: TextView
+    private var totalPedido: Double = 0.0 // Variable para almacenar el total
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurante_productos)
+        // Inicializar TextView para mostrar el total del pedido
+        tvTotalPedido = findViewById(R.id.tvTotalPedido)
 
-        // Configuración del RecyclerView
-        productAdapter = ProductAdapter()
+        // Configurar el adaptador con un callback para actualizaciones del total
+        productAdapter = ProductAdapter { total ->
+            totalPedido = total
+            updateTotalPedido()
+        }
+
         findViewById<RecyclerView>(R.id.recyclerView2).apply {
             layoutManager = LinearLayoutManager(this@RestauranteProductosActivity)
             adapter = productAdapter
@@ -118,7 +126,14 @@ class RestauranteProductosActivity : AppCompatActivity() {
             address = currentRestaurant!!.address,
             latitude = currentRestaurant!!.latitude,
             longitude = currentRestaurant!!.longitude,
-            details = orderDetails
+            details = orderDetails,
+            status = 0
         )
     }
+
+    // Método para actualizar el TextView con el total del pedido
+    private fun updateTotalPedido() {
+        tvTotalPedido.text = "Valor total del pedido: Bs. %.2f".format(totalPedido)
+    }
 }
+

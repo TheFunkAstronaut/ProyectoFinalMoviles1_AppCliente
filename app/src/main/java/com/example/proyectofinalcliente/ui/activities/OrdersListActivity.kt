@@ -36,10 +36,12 @@ class OrdersListActivity : AppCompatActivity() {
             intent.putExtra("ORDER_ID", order.id)
             intent.putExtra("LATITUDE", order.latitude)
             intent.putExtra("LONGITUDE", order.longitude)
+            intent.putExtra("ORDER_STATUS", order.status) // Agregar el estado del pedido al Intent
             startActivity(intent)
         }
         recyclerView.adapter = ordersAdapter
     }
+
 
     private fun fetchOrders() {
         val token = getSharedPreferences("UserPreferences", MODE_PRIVATE).getString("ACCESS_TOKEN", null)
