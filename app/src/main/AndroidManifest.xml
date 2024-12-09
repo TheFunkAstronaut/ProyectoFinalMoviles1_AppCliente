@@ -43,7 +43,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDHcZbdWxngUIiYwghmjL4ek1K4OU4_gSs" />
+            android:value="pene />
 
         <activity
             android:name=".ui.activities.MapsActivity"
